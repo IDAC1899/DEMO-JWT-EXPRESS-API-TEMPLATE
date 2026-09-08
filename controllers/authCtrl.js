@@ -34,6 +34,11 @@ router.post('/sign-up', async (req, res) => {
 
 router.post('/sign-in', async (req, res) => {
   try {
+    const user = await User.findOne({ username: req.body.username });
+    if (!user) {
+      return res.status(401).json({ err: 'Invalid credentials.' });
+    }
+
     res.status(200).json({ message: 'Signing in!' });
   } catch (err) {
     res.status(500).json({ err: err.message });
