@@ -5,8 +5,6 @@ const app = express();
 const mongoose = require('mongoose');
 const cors = require('cors');
 const logger = require('morgan');
-
-// Controllers
 const testJwtRouter = require('./controllers/test-jwtCtrl');
 const authRouter = require('./controllers/authCtrl');
 
