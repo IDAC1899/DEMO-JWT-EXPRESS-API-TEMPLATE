@@ -19,7 +19,7 @@ router.post('/sign-up', async (req, res) => {
 
     const user = await User.create({
       username: req.body.username,
-      hashedPassword: bcrypt.hashSync(req.body.password, saltRounds),
+      Password: bcrypt.hashSync(req.body.password, saltRounds),
     });
 
     const payload = { username: user.username, _id: user._id };
@@ -40,7 +40,7 @@ router.post('/sign-in', async (req, res) => {
     }
 
     const isPasswordCorrect = bcrypt.compareSync(
-      req.body.password, user.hashedPassword
+      req.body.password, user.Password
     );
     if (!isPasswordCorrect) {
       return res.status(401).json({ err: 'Invalid credentials.' });
